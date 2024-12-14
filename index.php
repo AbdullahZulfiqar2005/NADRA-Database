@@ -28,9 +28,9 @@
             <a href="documents.php" class="btn">View</a>
         </div>
         <div class="card">
-            <h3>Family Relation</h3>
+            <h3>Voter Registeration</h3>
             <p>Maintain marriage details securely.</p>
-            <a href="Family_relation.php" class="btn">View</a>
+            <a href="voter-registeration.php" class="btn">View</a>
         </div>
         <div class="card">
             <h3>Employment Details</h3>
