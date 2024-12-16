@@ -12,17 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];  
     $name = $_POST['name'];
     $dob = $_POST['dob'];
-    $father_name = $_POST['father_name'];
-    $address = $_POST['address'];
+    $gender = $_POST['gender'];  
+    $nationality= $_POST['nationality'];  
+    $address = $_POST['address'] ;
     $contact = $_POST['contact'];
 
     // Validate inputs (optional, add your own rules)
-    if (empty($id) || empty($name) || empty($dob) || empty($father_name) || empty($address) || empty($contact)) {
+    if (empty($id) || empty($name) || empty($dob) || empty($gender) || empty($address) || empty($contact)) {
         die('All fields are required!');
     }
 
     // Prepare the SQL query for updating the citizen's details
-    $sql = "UPDATE citizens SET name = ?, dob = ?, father_name = ?, address = ?, contact = ? WHERE id = ?";
+    $sql = "UPDATE citizens SET name = ?, date_of_birth = ?, gender = ?, nationality = ?, address = ?, contact_info = ? WHERE citizen_id = ?";
 
     $stmt = $conn->prepare($sql);
 
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Bind parameters and execute the query
-    $stmt->bind_param("ssssss", $name, $dob, $father_name, $address, $contact, $id);
+    $stmt->bind_param("sssssss", $name, $date_of_birth, $gender, $nationality, $address, $contact, $id);
 
     if ($stmt->execute()) {
         echo "Citizen record updated successfully.";

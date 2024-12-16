@@ -11,8 +11,12 @@
 </section>
 
 <div id="search-bar-container">
-        <input type="text" id="search-bar" placeholder="Enter ID of citizen">
+
+    <form action="check_voter.php" method = "GET">
+
+        <input type="text" name="id" id="search-bar" placeholder="Enter ID of citizen">
         <button id="search-button" class="search-button">Search</button>
+</form>
     </div>
 
     <script>

@@ -9,19 +9,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $id = $_POST['id'];
     $dob = $_POST['dob'];
-    $father_name = $_POST['father_name'];
+    $gender = $_POST['gender'];
+    $nationality = $_POST['nationality'];
     $address = $_POST['address'];
     $contact = $_POST['contact'];
 
-    if (empty($name) || empty($id) || empty($dob) || empty($father_name) || empty($address) || empty($contact)) {
-        die('All fields are required!');
-    }
+    // if (empty($name) || empty($id) || empty($dob) || empty($father_name) || empty($address) || empty($contact)) {
+    //     die('All fields are required!');
+    // }
 
 
-    $sql = "INSERT INTO citizens (id, name, dob, father_name, address, contact) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO citizens (citizen_id, name, date_of_birth, gender, nationality , address, contact_info) VALUES (?, ?, ?, ?, ?, ?,?)";
 
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("ssssss", $id, $name, $dob, $father_name, $address, $contact);
+        $stmt->bind_param("sssssss", $id, $name, $dob, $gender, $nationality, $address, $contact);
 
         if ($stmt->execute()) {
             echo "Citizen record inserted successfully.";

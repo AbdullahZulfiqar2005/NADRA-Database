@@ -5,7 +5,7 @@ include 'db_connection.php';
 if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
     $id = $_GET['citizen_id'];  
 
-    $sql = "SELECT * FROM citizens WHERE citizen_id = ?";
+    $sql = "SELECT * FROM crime WHERE citizen_id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
@@ -75,43 +75,40 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
                 }
               </style>';
 
-        echo "<h1 style='text-align: center;'>Citizen Details</h1>";
+        echo "<h1 style='text-align: center;'>Criminal Details</h1>";
         echo "<table>";
-        echo "<tr><th>ID</th><th>Name</th><th>Date of Birth</th><th>Gender</th><th>Nationality</th><th>Address</th><th>Contact</th></tr>";
+        echo "<tr><th>Criminal ID</th><th>ID</th><th>Crime</th><th>Date</th><th>Status</th><th>Details</th></tr>";
         
         $row = $result->fetch_assoc(); 
         
         echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['criminal_record_id']) . "</td>";
         echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['date_of_birth']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['nationality']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['address']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['contact_info']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['offense_type']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['date_of_offense']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['conviction_status']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['sentence_details']) . "</td>";
         echo "</tr>";
         echo "</table>";
         
         echo '<h2 style="text-align: center;">Update Citizen Details</h2>';
         echo '<form action="update_citizen.php" method="POST">
-                <input type="hidden" name="id" value="' . htmlspecialchars($row['citizen_id']) . '">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="' . htmlspecialchars($row['name']) . '" required>
+                <input type="hidden" name="id" value="' . htmlspecialchars($row['criminal_record_id']) . '">
+                
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" value="' . htmlspecialchars($row['citizen_id']) . '" required>
 
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" value="' . htmlspecialchars($row['date_of_birth']) . '" required>
+                <label for="crime">Crime:</label>
+                <input type="text" id="crime" name="crime" value="' . htmlspecialchars($row['offense_type']) . '" required>
 
-                <label for="gender">Gender:</label>
-                <input type="text" id="gender" name="gender" value="' . htmlspecialchars($row['gender']) . '" required>
+                <label for="date">date:</label>
+                <input type="text" id="date" name="date" value="' . htmlspecialchars($row['date_of_offense']) . '" required>
 
-                <label for="nationality">Nationality:</label>
-                <input type="text" id="nationality" name="nationality" value="' . htmlspecialchars($row['nationality']) . '" required>
+                <label for="status">status:</label>
+                <input type="text" id="status" name="status" value="' . htmlspecialchars($row['conviction_status']) . '" required>
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" value="' . htmlspecialchars($row['address']) . '" required>
-
-                <label for="contact">Contact:</label>
-                <input type="text" id="contact" name="contact" value="' . htmlspecialchars($row['contact_info']) . '" required>
+                <label for="details">details:</label>
+                <input type="text" id="details" name="details" value="' . htmlspecialchars($row['sentence_details']) . '" required>
 
                 <button type="submit">Update</button>
               </form>';
@@ -121,8 +118,8 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
 
     $stmt->close();
 } else {
-    echo '<form action="search_citizen.php" method="GET" style="text-align: center; margin-top: 20px;">
-            <input type="text" name="id" placeholder="Enter Citizen ID" required style="padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
+    echo '<form action="search_crime.php" method="GET" style="text-align: center; margin-top: 20px;">
+            <input type="text" name="id" placeholder="Enter criminal ID" required style="padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
             <button type="submit" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Search</button>
           </form>';
 }

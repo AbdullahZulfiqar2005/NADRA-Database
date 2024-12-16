@@ -5,7 +5,7 @@ include 'db_connection.php';
 if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
     $id = $_GET['citizen_id'];  
 
-    $sql = "SELECT * FROM citizens WHERE citizen_id = ?";
+    $sql = "SELECT * FROM employment_detail WHERE citizen_id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
@@ -75,43 +75,44 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
                 }
               </style>';
 
-        echo "<h1 style='text-align: center;'>Citizen Details</h1>";
+        echo "<h1 style='text-align: center;'>Criminal Details</h1>";
         echo "<table>";
-        echo "<tr><th>ID</th><th>Name</th><th>Date of Birth</th><th>Gender</th><th>Nationality</th><th>Address</th><th>Contact</th></tr>";
-        
+        echo "<tr><th>Employee ID</th><th>ID</th><th>Name</th><th>Job</th><th>Start Date</th><th>End Date</th><th>Salary</th></tr>";
+
         $row = $result->fetch_assoc(); 
         
         echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['employment_id']) . "</td>";
         echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['date_of_birth']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['nationality']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['address']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['contact_info']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['employer_name']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['job_title']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['employment_start_date']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['employment_end_date']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['salary']) . "</td>";
         echo "</tr>";
         echo "</table>";
         
         echo '<h2 style="text-align: center;">Update Citizen Details</h2>';
         echo '<form action="update_citizen.php" method="POST">
-                <input type="hidden" name="id" value="' . htmlspecialchars($row['citizen_id']) . '">
+                <input type="hidden" name="id" value="' . htmlspecialchars($row['employment_id']) . '">
+                
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" value="' . htmlspecialchars($row['citizen_id']) . '" required>
+
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="' . htmlspecialchars($row['name']) . '" required>
+                <input type="text" id="name" name="name" value="' . htmlspecialchars($row['employer_name']) . '" required>
 
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" value="' . htmlspecialchars($row['date_of_birth']) . '" required>
+                <label for="job">Job Title:</label>
+                <input type="text" id="job" name="job" value="' . htmlspecialchars($row['job_title']) . '" required>
 
-                <label for="gender">Gender:</label>
-                <input type="text" id="gender" name="gender" value="' . htmlspecialchars($row['gender']) . '" required>
+                <label for="start">Start Date:</label>
+                <input type="date" id="start" name="start" value="' . htmlspecialchars($row['employment_start_date']) . '" required>
 
-                <label for="nationality">Nationality:</label>
-                <input type="text" id="nationality" name="nationality" value="' . htmlspecialchars($row['nationality']) . '" required>
+                <label for="end">End Date:</label>
+                <input type="date" id="end" name="end" value="' . htmlspecialchars($row['employment_end_date']) . '" required>
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" value="' . htmlspecialchars($row['address']) . '" required>
-
-                <label for="contact">Contact:</label>
-                <input type="text" id="contact" name="contact" value="' . htmlspecialchars($row['contact_info']) . '" required>
+                <label for="salary">Salary:</label>
+                <input type="text" id="salary" name="salary" value="' . htmlspecialchars($row['salary']) . '" required>
 
                 <button type="submit">Update</button>
               </form>';
@@ -121,8 +122,8 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
 
     $stmt->close();
 } else {
-    echo '<form action="search_citizen.php" method="GET" style="text-align: center; margin-top: 20px;">
-            <input type="text" name="id" placeholder="Enter Citizen ID" required style="padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
+    echo '<form action="search_crime.php" method="GET" style="text-align: center; margin-top: 20px;">
+            <input type="text" name="id" placeholder="Enter criminal ID" required style="padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
             <button type="submit" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Search</button>
           </form>';
 }

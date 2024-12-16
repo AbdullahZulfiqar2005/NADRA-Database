@@ -12,7 +12,7 @@
     
     <div id="search-bar-container">
         <form action="search_citizen.php" method = "GET">
-        <input type="text" name="id" id="search-bar" placeholder="Enter ID of citizen">
+        <input type="text" name="citizen_id" id="search-bar" placeholder="Enter ID of citizen">
         <button id="search-button" class="search-button">Search</button>
         </form>
     </div>
@@ -28,8 +28,11 @@
         <label for="dob">Date of Birth:</label>
         <input type="date" id="dob" name="dob" required><br><br>
 
-        <label for="father-name">Father's Name:</label>
-        <input type="text" id="father-name" name="father_name" required><br><br>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" required><br><br>
+
+        <label for="nationality">Nationality:</label>
+        <input type="text" id="nationality" name="nationality" required><br><br>
 
         <label for="address">Address:</label>
         <textarea id="address" name="address" required></textarea><br><br>

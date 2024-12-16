@@ -12,29 +12,35 @@
     </section>
     
     <div class="criminal-form" id="criminal-form">
-        <form action="submit_form.php" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br><br>
+        <form action="insert_crime.php" method="POST">
 
-            <label for="id">ID:</label>
+            <label for="cid">Criminal ID:</label>
+            <input type="text" id="cid" name="cid" required><br><br>
+
+            <label for="id">Citizen ID:</label>
             <input type="text" id="id" name="id" required><br><br>
 
             <label for="crime">Crime Committed:</label>
             <input type="text" id="crime" name="crime" required><br><br>
 
-            <label for="address">Address:</label>
-            <textarea id="address" name="address" required></textarea><br><br>
+            <label for="date">Date of crime:</label>
+            <input type="date" id="date" name="date" required><br><br>
 
-            <label for="contact">Contact Number:</label>
-            <input type="text" id="contact" name="contact" required><br><br>
+            <label for="status">Conviction status:</label>
+            <textarea id="status" name="status" required></textarea><br><br>
+
+            <label for="details">Sentence Details:</label>
+            <input type="text" id="details" name="details" required><br><br>
 
             <button class="search-button" type="submit">Submit</button>
         </form>
     </div>
 
     <div id="search-bar-container">
-        <input type="text" id="search-bar" placeholder="Enter ID of citizen">
+    <form action="search_crime.php" method = "GET">
+        <input type="text" name ="citizen_id" id="search-bar" placeholder="Enter ID of citizen">
         <button id="search-button" class="search-button">Search</button>
+</form>
     </div>
 
     <script>
