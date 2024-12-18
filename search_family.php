@@ -5,7 +5,7 @@ include 'db_connection.php';
 if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
     $id = $_GET['citizen_id'];  
 
-    $sql = "SELECT * FROM criminal_records WHERE citizen_id = ?";
+    $sql = "SELECT * FROM family_relations WHERE citizen_id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
@@ -77,39 +77,31 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
 
         echo "<h1 style='text-align: center;'>Criminal Details</h1>";
         echo "<table>";
-        echo "<tr><th>Criminal ID</th><th>ID</th><th>Crime</th><th>Date</th><th>Status</th><th>Details</th></tr>";
+        echo "<tr><th>Family ID</th><th>Citizen ID</th><th>Relative ID</th><th>Relationship Type</th></tr>";
         
         $row = $result->fetch_assoc(); 
         
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($row['criminal_record_id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['relation_id']) . "</td>";
         echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['offense_type']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['date_of_offense']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['conviction_status']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['sentence_details']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['relative_id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['relationship_type']) . "</td>";
         echo "</tr>";
         echo "</table>";
         
         echo '<h2 style="text-align: center;">Update Citizen Details</h2>';
-        echo '<form action="update_crime.php" method="POST">
-                <label for="cid">CID:</label>
-                <input type="text" name="cid" value="' . htmlspecialchars($row['criminal_record_id']) . '" required>
+        echo '<form action="update_family.php" method="POST">
+                <label for="id">Relationship ID:</label>
+                <input type="text" name="id" value="' . htmlspecialchars($row['relation_id']) . '" required>
                 
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id" value="' . htmlspecialchars($row['citizen_id']) . '" required>
+                <label for="cid">Citizen ID:</label>
+                <input type="text" id="cid" name="cid" value="' . htmlspecialchars($row['citizen_id']) . '" required>
 
-                <label for="crime">Crime:</label>
-                <input type="text" id="crime" name="crime" value="' . htmlspecialchars($row['offense_type']) . '" required>
+                <label for="rid">Relative ID:</label>
+                <input type="text" id="rid" name="rid" value="' . htmlspecialchars($row['relative_id']) . '" required>
 
-                <label for="date">date:</label>
-                <input type="text" id="date" name="date" value="' . htmlspecialchars($row['date_of_offense']) . '" required>
-
-                <label for="status">status:</label>
-                <input type="text" id="status" name="status" value="' . htmlspecialchars($row['conviction_status']) . '" required>
-
-                <label for="details">details:</label>
-                <input type="text" id="details" name="details" value="' . htmlspecialchars($row['sentence_details']) . '" required>
+                <label for="type">Relationship type:</label>
+                <input type="text" id="type" name="type" value="' . htmlspecialchars($row['relationship_type']) . '" required>
 
                 <button type="submit">Update</button>
               </form>';

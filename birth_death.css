@@ -27,6 +27,14 @@
     margin-top: 20px;
     width: 100%;
 }
+#death-search-bar-container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 20px;
+    width: 100%;
+}
 
 #search-bar {
     margin-left: 20px;

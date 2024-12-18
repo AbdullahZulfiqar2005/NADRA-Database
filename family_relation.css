@@ -1,4 +1,4 @@
-.voter-section {
+.employment-section {
     padding: 2rem;
     text-align: center;
 }
@@ -20,14 +20,6 @@
 }
 
 #search-bar-container {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    margin-top: 20px;
-    width: 100%;
-}
-#search-bar-container2 {
     display: none;
     justify-content: center;
     align-items: center;
@@ -60,4 +52,15 @@
 
 .search-button:hover {
     background-color: #003580;
+}
+
+.form-container {
+    display: none;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    width: 50%; /* Optional: adjusts the width of the container */
+    margin-left: auto;
+    margin-right: auto; /* Centers the form container */
+    margin-bottom: 50px;
 }

@@ -13,18 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'];
     $date= $_POST['date'];
 
-    if (empty($details) || empty($id) || empty($crime) || empty($cid) || empty($date)) {
-        die('All fields are required!');
-    }
 
-
-    $sql = "INSERT INTO criminal_records (criminal_record_id, citizen_id , offense_type, date_of_offense, conviction_status, sentence_details) VALUES (?, ?, ?, ?, ?,?)";
+    $sql = "UPDATE criminal_records SET criminal_record_id = ?, offense_type=?, date_of_offense=?, conviction_status=?, sentence_details=? where citizen_id = ? ";
 
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("ssssss", $cid, $id, $crime, $date, $status, $details);
+        $stmt->bind_param("ssssss", $cid, $crime, $date, $status, $details, $id);
 
         if ($stmt->execute()) {
-            echo "Criminal record inserted successfully.";
+            echo "Criminal record updated successfully.";
             header("Location: success.php");
             exit;
         } else {

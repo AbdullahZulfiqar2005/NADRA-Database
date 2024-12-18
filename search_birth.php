@@ -5,7 +5,7 @@ include 'db_connection.php';
 if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
     $id = $_GET['citizen_id'];  
 
-    $sql = "SELECT * FROM criminal_records WHERE citizen_id = ?";
+    $sql = "SELECT * FROM birth_records WHERE citizen_id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
@@ -77,42 +77,19 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
 
         echo "<h1 style='text-align: center;'>Criminal Details</h1>";
         echo "<table>";
-        echo "<tr><th>Criminal ID</th><th>ID</th><th>Crime</th><th>Date</th><th>Status</th><th>Details</th></tr>";
-        
+        echo "<tr><th>Birth ID</th><th>ID</th><th>Birth Date</th><th>Place</th><th>Father Name</th></tr>";
+
         $row = $result->fetch_assoc(); 
         
         echo "<tr>";
-        echo "<td>" . htmlspecialchars($row['criminal_record_id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['birth_record_id']) . "</td>";
         echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['offense_type']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['date_of_offense']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['conviction_status']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['sentence_details']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['birth_date']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['birth_place']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['father_name']) . "</td>";
         echo "</tr>";
         echo "</table>";
-        
-        echo '<h2 style="text-align: center;">Update Citizen Details</h2>';
-        echo '<form action="update_crime.php" method="POST">
-                <label for="cid">CID:</label>
-                <input type="text" name="cid" value="' . htmlspecialchars($row['criminal_record_id']) . '" required>
-                
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id" value="' . htmlspecialchars($row['citizen_id']) . '" required>
-
-                <label for="crime">Crime:</label>
-                <input type="text" id="crime" name="crime" value="' . htmlspecialchars($row['offense_type']) . '" required>
-
-                <label for="date">date:</label>
-                <input type="text" id="date" name="date" value="' . htmlspecialchars($row['date_of_offense']) . '" required>
-
-                <label for="status">status:</label>
-                <input type="text" id="status" name="status" value="' . htmlspecialchars($row['conviction_status']) . '" required>
-
-                <label for="details">details:</label>
-                <input type="text" id="details" name="details" value="' . htmlspecialchars($row['sentence_details']) . '" required>
-
-                <button type="submit">Update</button>
-              </form>';
+       
     } else {
         echo "<p style='text-align: center;'>No citizen found with ID: " . htmlspecialchars($id) . "</p>";
     }

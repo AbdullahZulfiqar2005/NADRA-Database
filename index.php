@@ -48,9 +48,9 @@
             <a href="address.php" class="btn">View</a>
         </div>
         <div class="card">
-            <h3>Support</h3>
+            <h3>Family Relation</h3>
             <p>Contact our team for assistance.</p>
-            <a href="support.php" class="btn">Contact</a>
+            <a href="family_relation.php" class="btn">Contact</a>
         </div>
     </div>
 </section>

@@ -15,7 +15,7 @@
         <form action="insert_crime.php" method="POST">
 
             <label for="cid">Criminal ID:</label>
-            <input type="text" id="cid" name="cid" required><br><br>
+            <input type="text" name="cid" id="cid" name="cid" required><br><br>
 
             <label for="id">Citizen ID:</label>
             <input type="text" id="id" name="id" required><br><br>
