@@ -14,11 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = $_POST['address'];
     $contact = $_POST['contact'];
 
-    // if (empty($name) || empty($id) || empty($dob) || empty($father_name) || empty($address) || empty($contact)) {
-    //     die('All fields are required!');
-    // }
-
-
     $sql = "INSERT INTO citizens (citizen_id, name, date_of_birth, gender, nationality , address, contact_info) VALUES (?, ?, ?, ?, ?, ?,?)";
 
     if ($stmt = $conn->prepare($sql)) {

@@ -14,11 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $end = $_POST['employment_end_date'];
     $salary = $_POST['salary'];
 
-    // if (empty($name) || empty($id) || empty($dob) || empty($father_name) || empty($address) || empty($contact)) {
-    //     die('All fields are required!');
-    // }
-
-
     $sql = "INSERT INTO employment_detail (employment_id, citizen_id, employer_name, job_title, employment_start_date , employment_end_date, salary) VALUES (?, ?, ?, ?, ?, ?,?)";
 
     if ($stmt = $conn->prepare($sql)) {
@@ -27,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->execute()) {
             echo "Employee record inserted successfully.";
         } else {
-            echo "Error: " . $stmt->error; // Remove header temporarily for debugging
+            echo "Error: " . $stmt->error; 
         }
     } else {
         echo "Error preparing statement: " . $conn->error;

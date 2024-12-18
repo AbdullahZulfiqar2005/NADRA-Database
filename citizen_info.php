@@ -44,7 +44,6 @@
     </form>
 </div>
 
-
 <script>
     document.getElementById("Add-citizen").addEventListener("click", function(){
         const forms = document.getElementById("form-container");

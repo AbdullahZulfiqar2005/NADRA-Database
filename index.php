@@ -1,13 +1,10 @@
 <?php include 'includes/header.php'; ?>
 <main>
-    <!-- Hero Section -->
     <section class="hero">
         <h1>Welcome to NADRA Database System</h1>
         <p>Your one-stop solution for citizen data management.</p>
         <a href="#services" class="btn">Get Started</a>
     </section>
-
-    <!-- Services Section -->
 
     <section id="services" class="services">
     <h2>Services</h2>
@@ -29,7 +26,7 @@
         </div>
         <div class="card">
             <h3>Voter Registeration</h3>
-            <p>Maintain marriage details securely.</p>
+            <p>Check your voting details.</p>
             <a href="voter-registeration.php" class="btn">View</a>
         </div>
         <div class="card">
@@ -39,24 +36,22 @@
         </div>
         <div class="card">
             <h3>Birth/Death Records</h3>
-            <p>Register and view death certificates.</p>
+            <p>Register and view birth & death certificates.</p>
             <a href="birth_death.php" class="btn">View</a>
         </div>
         <div class="card">
             <h3>Address Records</h3>
-            <p>Review and monitor system activity.</p>
+            <p>Check citizen's address.</p>
             <a href="address.php" class="btn">View</a>
         </div>
         <div class="card">
             <h3>Family Relation</h3>
-            <p>Contact our team for assistance.</p>
+            <p>Check out Family relations.</p>
             <a href="family_relation.php" class="btn">Contact</a>
         </div>
     </div>
 </section>
 
-
-    <!-- Contact Section -->
     <section id="contact" class="contact" style = "margin-bottom:50px;">
         <h2>Contact Us</h2>
         <p>nadrasupport@gmail.com</p>
