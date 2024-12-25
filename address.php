@@ -6,7 +6,6 @@
         <div class="actions">
             <button id="search-address">Search for citizen address</button>
             <button id="add-address">Add citizen address</button>
-            <button >Filter Records</button>
         </div>
 
 </section>

@@ -7,7 +7,6 @@
         <div class="actions">
             <button id="Add-crime">Add Crime</button>
             <button id="search-criminal">Search for criminal</button>
-            <button>Filter Records</button>
         </div>
     </section>
     

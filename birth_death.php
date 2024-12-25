@@ -8,7 +8,6 @@
             <button id="birth-record">Citizen Birth Record</button>
             <button id="death-add">Add Death record</button>
             <button id="death-record">Citizen Death Record</button>
-            <button >Filter Records</button>
         </div>
 </section>
 

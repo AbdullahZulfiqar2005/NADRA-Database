@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('MySQL prepare error: ' . $conn->error);
     }
 
-    $stmt->bind_param("sssssss", $name, $date_of_birth, $gender, $nationality, $address, $contact, $id);
+    $stmt->bind_param("sssssss", $name, $dob, $gender, $nationality, $address, $contact, $id);
 
     if ($stmt->execute()) {
         echo "Citizen record updated successfully.";
@@ -37,4 +37,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $conn->close();
+
 ?>

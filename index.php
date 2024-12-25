@@ -47,7 +47,7 @@
         <div class="card">
             <h3>Family Relation</h3>
             <p>Check out Family relations.</p>
-            <a href="family_relation.php" class="btn">Contact</a>
+            <a href="family_relation.php" class="btn">View</a>
         </div>
     </div>
 </section>

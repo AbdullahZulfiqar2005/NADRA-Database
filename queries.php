@@ -1,6 +1,30 @@
 <?php include 'includes/header.php'; ?>
-
 <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        
         form {
             width: 50%;
             margin: 20px auto;
@@ -38,23 +62,8 @@
     </style>
 </head>
 <body>
-
-<h1 style="text-align: center;">Support & Complaints</h1>
-
-<h2 style="text-align: center;">Tell us about our service</h2>
-<form action="insert_support.php" method="POST">
-    <input type="hidden" name="aid">
-
-    <label for="id">ID:</label>
-    <input type="text" id="id" value='' name="id"required>
-
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name"  required>
-
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" required>
-
-    <button type="submit">Update</button>
-</form>
-
+    <form action="search.php" method="GET">
+        <input type="text" name="query" placeholder="Enter SQL query" required>
+        <button type="submit">Search</button>
+    </form>
 <?php include 'includes/footer.php'; ?>

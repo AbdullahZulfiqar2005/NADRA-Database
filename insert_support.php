@@ -6,21 +6,18 @@ error_reporting(E_ALL);
 include 'db_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cid = $_POST['id'];
     $name = $_POST['name'];
-    $id = $_POST['id'];
-    $dob = $_POST['dob'];
-    $gender = $_POST['gender'];
-    $nationality = $_POST['nationality'];
-    $address = $_POST['address'];
-    $contact = $_POST['contact'];
+    $description = $_POST['description'];
 
-    $sql = "INSERT INTO citizens (citizen_id, name, dob, gender, nationality , address, contact_info) VALUES (?, ?, ?, ?, ?, ?,?)";
+
+    $sql = "INSERT INTO feedback_and_complaints (id, name, description) VALUES (?, ?, ?)";
 
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sssssss", $id, $name, $dob, $gender, $nationality, $address, $contact);
+        $stmt->bind_param("sss", $cid, $name, $description);
 
         if ($stmt->execute()) {
-            echo "Citizen record inserted successfully.";
+            echo "Support record inserted successfully.";
             header("Location: success.php");
             exit;
         } else {

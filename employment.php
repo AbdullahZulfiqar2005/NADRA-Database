@@ -7,7 +7,6 @@
         <div class="actions">
             <button id="search-job">Search employee job</button>
             <button id="Add-job">Add a job for citizen</button>
-            <button >Filter Records</button>
         </div>
 
 </section>

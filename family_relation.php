@@ -6,7 +6,6 @@
         <div class="actions">
             <button id="Add-relation">Add relation</button>
             <button id="search-relation">Search relation</button>
-            <button id="filter">Filter Records</button>
         </div>
     </section>
     

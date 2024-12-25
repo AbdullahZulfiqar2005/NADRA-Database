@@ -6,7 +6,6 @@
         <div class="actions">
             <button id="Add-citizen">Add Citizen</button>
             <button id="search-citizen">Search/Update Citizen</button>
-            <button id="filter">Filter Records</button>
         </div>
     </section>
     

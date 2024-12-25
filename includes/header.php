@@ -15,6 +15,7 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="support.php">Feedback</a></li>
+                <li><a href="queries.php">Queries</a></li>
             </ul>
         </nav>
     </header>

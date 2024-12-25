@@ -5,7 +5,6 @@
         <h1>Manage Documents</h1>
         <div class="actions">
             <button id="apply-document">Apply for Document</button>
-            <button >Filter Records</button>
         </div>
         <div id="sub-document">
         <button id="cnic">Apply for CNIC</button>

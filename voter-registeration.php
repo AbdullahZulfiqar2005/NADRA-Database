@@ -5,7 +5,6 @@
         <h1>Voter Registeration</h1>
         <div class="actions">
             <button id="search-voter">Search a voter</button>
-            <button >Filter Records</button>
         </div>
 
 </section>
