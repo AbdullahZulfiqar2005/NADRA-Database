@@ -1,4 +1,6 @@
-<?php include 'includes/header.php'; ?>
+<?php include 'includes/header.php'; 
+        include 'db_connection.php';
+?>
 <main>
     <link rel="stylesheet" href="citizen_info.css">
     <section class="citizen-section">
@@ -6,6 +8,7 @@
         <div class="actions">
             <button id="Add-citizen">Add Citizen</button>
             <button id="search-citizen">Search/Update Citizen</button>
+            <button id="all">Show All</button>
         </div>
     </section>
     
@@ -43,11 +46,47 @@
     </form>
 </div>
 
+
+<div class="all" id = "full_detail">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Nationality</th>
+            <th>Address</th>
+            <th>Contact</th>
+        </tr>
+        <?php
+    
+    $sql = "SELECT * FROM citizens";
+    $stmt = $conn->prepare($sql);     
+    $stmt->execute();
+    $result = $stmt->get_result();
+           while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['date_of_birth']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['gender']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['nationality']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['address']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['contact_info']) . "</td>";
+                echo "</tr>";
+            }
+        $conn->close();
+        ?>
+    </table>
+</div>
+
 <script>
     document.getElementById("Add-citizen").addEventListener("click", function(){
         const forms = document.getElementById("form-container");
         if (forms.style.display === "none" || forms.style.display === "") {
             forms.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display = "none";
+            document.getElementById("full_detail").style.display = "none";
         } else {
             forms.style.display = "none"; 
         }
@@ -56,8 +95,22 @@
         const searchBarContainer = document.getElementById("search-bar-container");
         if (searchBarContainer.style.display === "none" || searchBarContainer.style.display === "") {
             searchBarContainer.style.display = "flex"; 
+            document.getElementById("form-container").style.display = "none";
+            document.getElementById("full_detail").style.display = "none";
+
         } else {
             searchBarContainer.style.display = "none"; 
+        }
+    });
+    document.getElementById("all").addEventListener("click", function () {
+        const full_details = document.getElementById("full_detail");
+        if (full_details.style.display === "none" || full_details.style.display === "") {
+            full_details.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display = "none";
+            document.getElementById("form-container").style.display = "none";
+
+        } else {
+            full_details.style.display = "none"; 
         }
     });
 

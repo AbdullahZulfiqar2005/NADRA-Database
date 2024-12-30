@@ -100,16 +100,16 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
                 <input type="text" id="id" name="id" value="' . htmlspecialchars($row['citizen_id']) . '" required>
 
                 <label for="crime">Crime:</label>
-                <input type="text" id="crime" name="crime" value="' . htmlspecialchars($row['offense_type']) . '" required>
+                <input type="text" id="crime" name="crime" value="' . htmlspecialchars($row['offense_type']) . '" >
 
                 <label for="date">date:</label>
-                <input type="text" id="date" name="date" value="' . htmlspecialchars($row['date_of_offense']) . '" required>
+                <input type="text" id="date" name="date" value="' . htmlspecialchars($row['date_of_offense']) . '" >
 
                 <label for="status">status:</label>
-                <input type="text" id="status" name="status" value="' . htmlspecialchars($row['conviction_status']) . '" required>
+                <input type="text" id="status" name="status" value="' . htmlspecialchars($row['conviction_status']) . '" >
 
                 <label for="details">details:</label>
-                <input type="text" id="details" name="details" value="' . htmlspecialchars($row['sentence_details']) . '" required>
+                <input type="text" id="details" name="details" value="' . htmlspecialchars($row['sentence_details']) . '" >
 
                 <button type="submit">Update</button>
               </form>';

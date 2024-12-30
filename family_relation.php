@@ -2,10 +2,11 @@
 <main>
     <link rel="stylesheet" href="citizen_info.css">
     <section class="citizen-section">
-        <h1>Citizen Information</h1>
+        <h1>Family Relations</h1>
         <div class="actions">
             <button id="Add-relation">Add relation</button>
             <button id="search-relation">Search relation</button>
+            <button id="all">View</button>
         </div>
     </section>
     
@@ -31,13 +32,37 @@
         </form>
     </div>
 
-
+    <div class="all" id = "full_detail">
+    <table>
+    <tr><th>Family ID</th><th>Citizen ID</th><th>Relative ID</th><th>Relationship Type</th></tr>
+        <?php
+        include 'db_connection.php';
+    
+    $sql = "SELECT * FROM family_relations";
+    $stmt = $conn->prepare($sql);     
+    $stmt->execute();
+    $result = $stmt->get_result();
+           while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['relation_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['relative_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['relationship_type']) . "</td>";
+                echo "</tr>";
+            }
+        $conn->close();
+        ?>
+    </table>
+</div>
 
 <script>
     document.getElementById("Add-relation").addEventListener("click", function(){
         const forms = document.getElementById("form-container");
         if (forms.style.display === "none" || forms.style.display === "") {
             forms.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display="none";
+            document.getElementById("full_detail").style.display="none";
+
         } else {
             forms.style.display = "none"; 
         }
@@ -46,8 +71,23 @@
         const searchBarContainer = document.getElementById("search-bar-container");
         if (searchBarContainer.style.display === "none" || searchBarContainer.style.display === "") {
             searchBarContainer.style.display = "flex"; 
+            document.getElementById("form-container").style.display="none";
+            document.getElementById("full_detail").style.display="none";
+
+            
         } else {
             searchBarContainer.style.display = "none"; 
+        }
+    });
+    document.getElementById("all").addEventListener("click", function () {
+        const full_details = document.getElementById("full_detail");
+        if (full_details.style.display === "none" || full_details.style.display === "") {
+            full_details.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display = "none";
+            document.getElementById("form-container").style.display = "none";
+
+        } else {
+            full_details.style.display = "none"; 
         }
     });
 

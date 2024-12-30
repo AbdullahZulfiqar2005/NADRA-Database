@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $sql = "UPDATE criminal_records SET criminal_record_id = ?, offense_type=?, date_of_offense=?, conviction_status=?, sentence_details=? where citizen_id = ? ";
 
-    if ($stmt = $conn->prepare($sql)) {
+    if ($stmt = $conn->prepare(query: $sql)) {
         $stmt->bind_param("ssssss", $cid, $crime, $date, $status, $details, $id);
 
         if ($stmt->execute()) {

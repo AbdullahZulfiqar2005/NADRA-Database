@@ -1,4 +1,6 @@
-<?php include 'includes/header.php'; ?>
+<?php include 'includes/header.php'; 
+        include 'db_connection.php';
+?>
 
 <main>
     <link rel="stylesheet" href="employment.css">
@@ -7,6 +9,7 @@
         <div class="actions">
             <button id="search-job">Search employee job</button>
             <button id="Add-job">Add a job for citizen</button>
+            <button id="all">View</button>
         </div>
 
 </section>
@@ -19,7 +22,7 @@
     </div>
 
     <div class="form-container" id="form-container">
-    <form action="insert_employee.php" method="POST">
+    <form action="insert_employee.php" id = "form" method="POST">
 
         <label for="eid">Employee ID:</label>
         <input type="text" id="eid" name="employment_id" required><br><br>
@@ -48,12 +51,47 @@
     </form>
 </div>
 
+
+<div class="all" id = "full_detail">
+    <table>
+    <tr>
+        <th>Employee ID</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Salary</th>
+    </tr>
+        <?php
+    
+    $sql = "SELECT * FROM employment_detail";
+    $stmt = $conn->prepare($sql);     
+    $stmt->execute();
+    $result = $stmt->get_result();
+           while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['employment_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['employer_name']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['job_title']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['employment_start_date']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['employment_end_date']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['salary']) . "</td>";
+                echo "</tr>";
+            }
+        $conn->close();
+        ?>
+    </table>
+</div>
 <script>
 
-document.getElementById("Add-job").addEventListener("click", function(){
+    document.getElementById("Add-job").addEventListener("click", function(){
         const forms = document.getElementById("form-container");
         if (forms.style.display === "none" || forms.style.display === "") {
             forms.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display="none";
+
         } else {
             forms.style.display = "none"; 
         }
@@ -62,8 +100,20 @@ document.getElementById("Add-job").addEventListener("click", function(){
         const searchBarContainer = document.getElementById("search-bar-container");
         if (searchBarContainer.style.display === "none" || searchBarContainer.style.display === "") {
             searchBarContainer.style.display = "flex"; 
+            document.getElementById("form-container").style.display="none";
         } else {
             searchBarContainer.style.display = "none"; 
+        }
+    });
+    document.getElementById("all").addEventListener("click", function () {
+        const full_details = document.getElementById("full_detail");
+        if (full_details.style.display === "none" || full_details.style.display === "") {
+            full_details.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display = "none";
+            document.getElementById("form-container").style.display = "none";
+
+        } else {
+            full_details.style.display = "none"; 
         }
     });
 </script>

@@ -6,6 +6,7 @@
         <div class="actions">
             <button id="search-address">Search for citizen address</button>
             <button id="add-address">Add citizen address</button>
+            <button id="all">View</button>
         </div>
 
 </section>
@@ -18,7 +19,7 @@
 
 
     <div class="form-container" id="form-container">
-    <form action="insert_address.php" method="POST">
+    <form action="insert_address.php" id="form" method="POST">
         <label for="aid">Address ID:</label>
         <input type="text" id="aid" name="aid" required><br><br>
 
@@ -40,11 +41,40 @@
         <button class = "search-button" type="submit">Submit</button>
     </form>
 </div>
+
+<div class="all" id = "full_detail">
+    <table>
+    <tr><th>Address ID</th><th>ID</th><th>Previous Address</th><th>Current Address</th><th>Move in Date</th><th>Move out Date</th></tr>
+        <?php
+        include 'db_connection.php';
+    
+    $sql = "SELECT * FROM address_history";
+    $stmt = $conn->prepare($sql);     
+    $stmt->execute();
+    $result = $stmt->get_result();
+           while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['address_history_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['previous_address']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['current_address']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['move_in_date']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['move_out_date']) . "</td>";
+                echo "</tr>";
+            }
+        $conn->close();
+        ?>
+    </table>
+</div>
 <script>
     document.getElementById("search-address").addEventListener("click", function () {
         const searchBarContainer = document.getElementById("search-bar-container");
         if (searchBarContainer.style.display === "none" || searchBarContainer.style.display === "") {
             searchBarContainer.style.display = "flex"; 
+            document.getElementById("form-container").style.display="none";
+            document.getElementById("full_detail").style.display="none";
+
+
         } else {
             searchBarContainer.style.display = "none"; 
         }
@@ -53,8 +83,21 @@
         const searchBarContainer = document.getElementById("form-container");
         if (searchBarContainer.style.display === "none" || searchBarContainer.style.display === "") {
             searchBarContainer.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display="none";
+            document.getElementById("full_detail").style.display="none";
         } else {
             searchBarContainer.style.display = "none"; 
+        }
+    });
+    document.getElementById("all").addEventListener("click", function () {
+        const full_details = document.getElementById("full_detail");
+        if (full_details.style.display === "none" || full_details.style.display === "") {
+            full_details.style.display = "flex"; 
+            document.getElementById("search-bar-container").style.display = "none";
+            document.getElementById("form-container").style.display = "none";
+
+        } else {
+            full_details.style.display = "none"; 
         }
     });
 </script>    

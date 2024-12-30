@@ -1,4 +1,6 @@
-<?php include 'includes/header.php'; ?>
+<?php include 'includes/header.php'; 
+include 'db_connection.php'; 
+?>
 <main>
     <link rel="stylesheet" href="birth_death.css">
     <section class="birth_death-section">
@@ -8,11 +10,14 @@
             <button id="birth-record">Citizen Birth Record</button>
             <button id="death-add">Add Death record</button>
             <button id="death-record">Citizen Death Record</button>
+            <br>
+            <button id="all">View Birth</button>
+            <button id="alld">View Death</button>
         </div>
 </section>
 
 <div class="birth-form-container" id="birth-form-container">
-    <form action="birth_submit_form.php" method="POST">
+    <form action="birth_submit_form.php"  id="form"  method="POST">
         <label for="citizen_id">ID:</label>
         <input type="text" id="citizen_id" name="citizen_id" required><br><br>
 
@@ -30,7 +35,7 @@
 </div>
 
 <div class="death-form-container" id="death-form-container">
-    <form action="death_submit_form.php" method="POST">
+    <form action="death_submit_form.php"  id="form"  method="POST">
         <label for="citizen_id">ID:</label>
         <input type="text" id="citizen_id" name="citizen_id" required><br><br>
 
@@ -62,41 +67,120 @@
 </form>
     </div>
 
+<div class="all" id = "full_detail">
+    <table>
+        <tr>
+        <tr><th>Birth ID</th><th>ID</th><th>Birth Date</th><th>Place</th><th>Father Name</th></tr>
+        </tr>
+        <?php
+    
+    $sql = "SELECT * FROM birth_records";
+    $stmt = $conn->prepare($sql);     
+    $stmt->execute();
+    $result = $stmt->get_result();
+           while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['birth_record_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['birth_date']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['birth_place']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['father_name']) . "</td>";
+                echo "</tr>";
+            }
+        $conn->close();
+        ?>
+    </table>
+</div>
+
+
+<div class="alld" id="all_death">
+    <table>
+        <tr>
+            <th>Death ID</th>
+            <th>ID</th>
+            <th>Death Date</th>
+            <th>Death Place</th>
+            <th>Cause of Death</th>
+        </tr>
+        <?php
+        include 'db_connection.php'; 
+        $sql = "SELECT * FROM death_records";
+        $stmt = $conn->prepare($sql);
+           
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows === 0) {
+            echo "<tr><td colspan='5'>No records found</td></tr>";
+        } else {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['death_record_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['citizen_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['date_of_death']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['place_of_death']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['cause_of_death']) . "</td>";
+                echo "</tr>";
+            }
+        }
+        $conn->close();
+        ?>
+    </table>
+</div>
+
     <script>
-    document.getElementById("new-birth").addEventListener("click", function(){
-        const forms = document.getElementById("birth-form-container");
-        if (forms.style.display === "none" || forms.style.display === "") {
-            forms.style.display = "flex"; 
-        } else {
-            forms.style.display = "none"; 
-        }
-    });
-    document.getElementById("death-add").addEventListener("click", function () {
-        const forms = document.getElementById("death-form-container");
-        if (forms.style.display === "none" || forms.style.display === "") {
-            forms.style.display = "flex"; 
-        } else {
-            forms.style.display = "none"; 
-        }
+   function toggleSection(sectionId) {
+    const sections = [
+        "birth-form-container",
+        "death-form-container",
+        "search-bar-container",
+        "death-search-bar-container",
+        "full_detail",
+        "all_death"
+    ];
+
+    // Get the target section
+    const targetSection = document.getElementById(sectionId);
+
+    // If the target section is already visible, hide it and return
+    if (targetSection.style.display === "flex") {
+        targetSection.style.display = "none";
+        return;
+    }
+
+    // Hide all sections
+    sections.forEach((id) => {
+        document.getElementById(id).style.display = "none";
     });
 
-    document.getElementById("birth-record").addEventListener("click", function () {
-        const searchBarContainer = document.getElementById("search-bar-container");
-        if (searchBarContainer.style.display === "none" || searchBarContainer.style.display === "") {
-            searchBarContainer.style.display = "flex"; 
-        } else {
-            searchBarContainer.style.display = "none"; 
-        }
-    });
+    // Show the targeted section
+    targetSection.style.display = "flex";
+}
 
-    document.getElementById("death-record").addEventListener("click", function () {
-        const searchBarContainer = document.getElementById("death-search-bar-container");
-        if (searchBarContainer.style.display === "none" || searchBarContainer.style.display === "") {
-            searchBarContainer.style.display = "flex"; 
-        } else {
-            searchBarContainer.style.display = "none"; 
-        }
-    });
+// Event Listeners for buttons
+document.getElementById("new-birth").addEventListener("click", function () {
+    toggleSection("birth-form-container");
+});
+
+document.getElementById("death-add").addEventListener("click", function () {
+    toggleSection("death-form-container");
+});
+
+document.getElementById("birth-record").addEventListener("click", function () {
+    toggleSection("search-bar-container");
+});
+
+document.getElementById("death-record").addEventListener("click", function () {
+    toggleSection("death-search-bar-container");
+});
+
+document.getElementById("all").addEventListener("click", function () {
+    toggleSection("full_detail");
+});
+
+document.getElementById("alld").addEventListener("click", function () {
+    toggleSection("all_death");
+});
 
 
 </script>
