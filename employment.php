@@ -24,9 +24,6 @@
     <div class="form-container" id="form-container">
     <form action="insert_employee.php" id = "form" method="POST">
 
-        <label for="eid">Employee ID:</label>
-        <input type="text" id="eid" name="employment_id" required><br><br>
-
         <label for="id">ID:</label>
         <input type="text" id="id" name="citizen_id" required><br><br>
 
@@ -41,7 +38,7 @@
         <input type="date" id="start" name="employment_start_date" required><br><br>
 
         <label for="end">End Date:</label>
-        <input type="date" id="end" name="employment_end_date" required><br><br>
+        <input type="date" id="end" name="employment_end_date" ><br><br>
 
         <label for="salary">Salary:</label>
         <input type="text" id="salary" name="salary" required><br><br>

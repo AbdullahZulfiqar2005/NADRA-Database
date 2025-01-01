@@ -93,7 +93,7 @@ if (isset($_GET['citizen_id']) && !empty($_GET['citizen_id'])) {
         echo "</table>";
         
         echo '<h2 style="text-align: center;">Update Citizen Details</h2>';
-        echo '<form action="update_citizen.php" method="POST">
+        echo '<form action="update_employee.php" method="POST">
                 <input type="hidden" name="id" value="' . htmlspecialchars($row['employment_id']) . '">
                 
                 <label for="id">ID:</label>

@@ -20,8 +20,6 @@
 
     <div class="form-container" id="form-container">
     <form action="insert_address.php" id="form" method="POST">
-        <label for="aid">Address ID:</label>
-        <input type="text" id="aid" name="aid" required><br><br>
 
         <label for="id">ID:</label>
         <input type="text" id="id" name="id" required><br><br>

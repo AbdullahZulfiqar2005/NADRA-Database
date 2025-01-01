@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
 
 
-    $sql = "INSERT INTO feedback_and_complaints (id, name, description) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO feedback_and_complaints (citizen_id, name, description) VALUES (?, ?, ?)";
 
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("sss", $cid, $name, $description);

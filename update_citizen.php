@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Citizen record updated successfully.";
-        echo '<a href="search_citizen.php?id=' . htmlspecialchars($id) . '">View Updated Citizen</a>';
     } else {
         echo "Error: " . $stmt->error;
     }

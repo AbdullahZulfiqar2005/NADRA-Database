@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 include 'db_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $eid = $_POST['employment_id'];
     $id = $_POST['citizen_id'];
     $name = $_POST['employer_name'];
     $job = $_POST['job_title'];
@@ -14,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $end = $_POST['employment_end_date'];
     $salary = $_POST['salary'];
 
-    $sql = "INSERT INTO employment_detail (employment_id, citizen_id, employer_name, job_title, employment_start_date , employment_end_date, salary) VALUES (?, ?, ?, ?, ?, ?,?)";
+    $sql = "INSERT INTO employment_detail (citizen_id, employer_name, job_title, employment_start_date , employment_end_date, salary) VALUES (?, ?, ?, ?, ?,?)";
 
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sssssss", $eid, $id, $name, $job, $start, $end, $salary);
+        $stmt->bind_param("ssssss",  $id, $name, $job, $start, $end, $salary);
 
         if ($stmt->execute()) {
             echo "Employee record inserted successfully.";

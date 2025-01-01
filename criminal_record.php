@@ -16,9 +16,6 @@
     <div class="criminal-form" id="criminal-form">
         <form action="insert_crime.php" method="POST">
 
-            <label for="cid">Criminal ID:</label>
-            <input type="text" name="cid" id="cid" name="cid" required><br><br>
-
             <label for="id">Citizen ID:</label>
             <input type="text" id="id" name="id" required><br><br>
 
@@ -58,7 +55,7 @@
         </tr>
         <?php
     
-    $sql = "SELECT * FROM criminal_records";
+    $sql = "SELECT * FROM criminal_records where offense_type IS NOT NULL";
     $stmt = $conn->prepare($sql);     
     $stmt->execute();
     $result = $stmt->get_result();

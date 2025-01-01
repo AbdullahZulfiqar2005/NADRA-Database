@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = $_POST['address'];
     $contact = $_POST['contact'];
 
-    $sql = "INSERT INTO citizens (citizen_id, name, dob, gender, nationality , address, contact_info) VALUES (?, ?, ?, ?, ?, ?,?)";
+    $sql = "INSERT INTO citizens (citizen_id, name, date_of_birth, gender, nationality , address, contact_info) VALUES (?, ?, ?, ?, ?, ?,?)";
 
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("sssssss", $id, $name, $dob, $gender, $nationality, $address, $contact);
