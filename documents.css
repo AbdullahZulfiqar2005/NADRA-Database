@@ -114,3 +114,72 @@
   border: 1px solid #ccc;
   font-size: 1rem;
 }
+.form-container {
+  display: none;
+  padding: 20px;
+  margin-top: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+.form-container {
+  display: none;
+}
+#cnic-form-container {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #747070;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+#cnic-form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+#cnic-form-container input {
+  width: 300%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #979696;
+  border-radius: 5px;
+}
+
+#cnic-form-container button:hover {
+  background-color: #003580;
+}
+
+#passport-form-container{
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #747070;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+#passport-form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+#passport-form-container input {
+  width: 300%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #979696;
+  border-radius: 5px;
+}
+
+#passport-form-container button:hover {
+  background-color: #003580;
+}

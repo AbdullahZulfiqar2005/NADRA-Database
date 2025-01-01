@@ -13,7 +13,7 @@
 
     </section>
 
-    <div class="cnic-form-container" id="cnic-form-container">
+    <div class="form-container" id="cnic-form-container">
     <form action="submit_cnic.php" method="POST">
     <label for="citizen-id">Citizen ID:</label>
     <input type="number" id="citizen-id" name="citizen_id" required><br><br>
@@ -30,7 +30,6 @@
     <label for="status">Status:</label>
     <select id="status" name="status" required>
         <option value="Active">Active</option>
-        <option value="Expired">Expired</option>
     </select><br><br>
         <button class = "search-button" type="submit">Submit</button>
     </form>
@@ -38,7 +37,7 @@
 
 
 
-    <div class="passport-form-container" id="passport-form-container">
+    <div class="form-container" id="passport-form-container">
     <form action="submit_passport.php" method="POST">
     <label for="citizen-id">Citizen ID:</label>
 <input type="number" id="citizen-id" name="citizen_id" required><br><br>
@@ -84,6 +83,7 @@
         const forms = document.getElementById("cnic-form-container");
         if (forms.style.display === "none" || forms.style.display === "") {
             forms.style.display = "flex"; 
+            document.getElementById("passport-form-container").style.display="none";
         } else {
             forms.style.display = "none"; 
         }
@@ -92,6 +92,8 @@
         const forms = document.getElementById("passport-form-container");
         if (forms.style.display === "none" || forms.style.display === "") {
             forms.style.display = "flex"; 
+            document.getElementById("cnic-form-container").style.display="none";
+
         } else {
             forms.style.display = "none"; 
         }
